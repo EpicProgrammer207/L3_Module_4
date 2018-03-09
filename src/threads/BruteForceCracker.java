@@ -1,3 +1,4 @@
+package threads;
 // Below is a completed program that uses brute force to crack a 9-digit password. 
 // On average, the program takes about 0.125 seconds to find the password.
 // Your goal is to re-write the algorithm using Threads. Try to shorten the time it takes 
@@ -9,7 +10,8 @@
 import java.util.Random;
 
 public class BruteForceCracker {
-	static long code = (long)(new Random().nextDouble() * 1_000_000_000);
+	static Double  j = new Random().nextDouble();
+	static long code = (long)( j * 1_000_000_000) +1;
 	
 	static long startTime;
 	static long endTime;
@@ -20,8 +22,19 @@ public class BruteForceCracker {
 		startTime = System.currentTimeMillis();
 		
 		int ctr = 0;
-		while(!checkCode(ctr++));
-		
+	
+
+	new Thread(()-> checkCode((long) (j*10_000_000))).start();
+	new Thread(()-> checkCode((long) (j*10_000_000+ 10_000_000))).start();
+	new Thread(()-> checkCode((long) (j*10_000_000+ 20_000_000))).start();
+	new Thread(()-> checkCode((long) (j*10_000_000+ 30_000_000))).start();
+	new Thread(()-> checkCode((long) (j*10_000_000+ 40_000_000))).start();
+	new Thread(()-> checkCode((long) (j*10_000_000+ 50_000_000))).start();
+	new Thread(()-> checkCode((long) (j*10_000_000+ 60_000_000))).start();
+	new Thread(()-> checkCode((long) (j*10_000_000+ 70_000_000))).start();
+	new Thread(()-> checkCode((long) (j*10_000_000+ 80_000_000))).start();
+	new Thread(()-> checkCode((long) (j*10_000_000+ 90_000_000))).start();
+
 		endTime = System.currentTimeMillis();
 		elapsedTime = (float)(endTime - startTime);
 		elapsedTime /= 1000.f;
